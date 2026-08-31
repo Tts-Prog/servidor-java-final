@@ -2,6 +2,7 @@ package com.labanta.servidorlocal.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -10,10 +11,12 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    // Chave secreta para assinar o token (mínimo 256 bits para HS256)
-    private final SecretKey chaveSecreta = Keys.hmacShaKeyFor(
-            "${JWT_SECRET}".getBytes()
-    );
+    // O Spring injeta o valor da propriedade jwt.secret (que vem do .env ou application.properties)
+    private final SecretKey chaveSecreta;
+
+    public JwtService(@Value("${jwt.secret}") String segredo) {
+        this.chaveSecreta = Keys.hmacShaKeyFor(segredo.getBytes());
+    }
 
     public String gerarToken(String username) {
         return Jwts.builder()
