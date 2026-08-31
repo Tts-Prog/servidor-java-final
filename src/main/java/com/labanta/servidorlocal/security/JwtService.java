@@ -11,7 +11,8 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    // O Spring injeta o valor da propriedade jwt.secret (que vem do .env ou application.properties)
+    // O Spring injeta o valor da propriedade jwt.secret
+    // (que vem do .env ou application.properties)
     private final SecretKey chaveSecreta;
 
     public JwtService(@Value("${jwt.secret}") String segredo) {
