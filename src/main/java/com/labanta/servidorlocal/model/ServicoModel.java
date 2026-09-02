@@ -37,6 +37,10 @@ public class ServicoModel {
         this.imagemCapa = imagemCapa;
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
     public String getTitulo() {
         return this.titulo;
     }

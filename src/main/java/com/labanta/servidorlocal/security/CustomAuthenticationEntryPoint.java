@@ -22,7 +22,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         String json = "{ \"Erro\": \"Erro ao authenticar ao servidor.\", " +
-                "\"Detalhes:\" \"Token inexistente ou invalido\" }";
+                "\"Detalhes\": \"Token inexistente ou invalido\" }";
 
         response.getWriter().write(json);
     }
